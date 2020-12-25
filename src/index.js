@@ -1,4 +1,5 @@
 require('./models/User');
+require('./models/Good');
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -20,7 +21,7 @@ app.use('/', routes);
 //     });
 // });
 
-const mongoUri = 'mongodb+srv://nik:1111@cluster0-uzqgh.mongodb.net/test?retryWrites=true&w=majority';
+const mongoUri = 'mongodb+srv://nik:1111@cluster0-uzqgh.mongodb.net/eshop?retryWrites=true&w=majority';
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true
