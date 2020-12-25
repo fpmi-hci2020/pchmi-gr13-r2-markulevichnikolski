@@ -52,8 +52,8 @@ class GoodsRepository {
                     }
                 };
             }
-
-            await User.updateOne({ _id: userId }, { $unset: { orderedGoods: [...user.orderedGoods, goodId] } });
+            console.log(goodId);
+            await User.updateOne({ _id: userId }, { $pull: {orderedGoods: goodId } });
         } catch (err) {
             throw err;
         }
