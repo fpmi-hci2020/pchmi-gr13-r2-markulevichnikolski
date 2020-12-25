@@ -52,6 +52,43 @@ class GoodsRepository {
             throw err;
         }
     }
+
+    async getOrderedGoods(userId) {
+        try {
+            const user = await User.findOne({ _id: userId });
+            if (!user) {
+                return {
+                    data: {
+                        error: true,
+                        message: 'User not found'
+                    }
+                };
+            }
+
+            const orderedGoodsId = user.orderedGoods;
+            const orderedGoods = await Good.find(
+                {'_id': { $in: orderedGoodsId}}
+            );
+
+            if (!orderedGoods) {
+                return {
+                    data: {
+                        error: true,
+                        message: 'Goods not found'
+                    }
+                };
+            }
+
+            return {
+                data: {
+                    goods: orderedGoods
+                }
+            }
+
+        } catch (err) {
+            throw err;
+        }
+    }
 }
 
 module.exports = new GoodsRepository();
