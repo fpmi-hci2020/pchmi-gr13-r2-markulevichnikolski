@@ -12,7 +12,14 @@ function getAllGoods() {
     return goodsRepository.getAllGoods();
 }
 
+function getOrderedGoods(req) {
+    console.log('AAAAAAAAAA', req.params);
+    const { userId } = req.params;
+    return goodsRepository.getOrderedGoods(userId)
+}
+
 module.exports = {
     buy: routeUtils.handleResponse(buy, statusCode.OK, statusCode.NOT_FOUND),
-    get: routeUtils.handleResponse(getAllGoods, statusCode.OK, statusCode.NO_CONTENT)
+    get: routeUtils.handleResponse(getAllGoods, statusCode.OK, statusCode.NO_CONTENT),
+    getOrderedGoods: routeUtils.handleResponse(getOrderedGoods, statusCode.OK, statusCode.NO_CONTENT)
 };
