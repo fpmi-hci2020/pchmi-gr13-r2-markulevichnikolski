@@ -34,7 +34,8 @@ class SignInRepository {
 
             return {
                 data: {
-                    token
+                    token,
+                    user
                 }
             };
 
