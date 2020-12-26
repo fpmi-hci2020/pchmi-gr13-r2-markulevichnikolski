@@ -6,6 +6,7 @@ const goodsRoutes = require('./goodsRoutes/goodsRoutes');
 
 const router = express.Router();
 
+router.use('/', signInRoutes)
 router.use('/signin', signInRoutes);
 router.use('/signup', signUpRoutes);
 router.use('/goods', goodsRoutes);
