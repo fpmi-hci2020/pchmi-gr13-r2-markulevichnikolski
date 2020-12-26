@@ -9,5 +9,7 @@ router.route('/get')
     .get(goodsController.get);
 router.route('/get-ordered-goods/:userId')
     .get(goodsController.getOrderedGoods);
+router.route('/delBuy')
+    .post(goodsController.delBuy);
 
 module.exports = router;

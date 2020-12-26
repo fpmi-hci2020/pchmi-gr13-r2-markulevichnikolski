@@ -8,6 +8,12 @@ function buy(req) {
     return goodsRepository.buy(userId, goodId);
 }
 
+function delBuy(req) {
+    const { userId, goodId } = req.body;
+    console.log(1, req.body);
+    return goodsRepository.delBuy(userId, goodId);
+}
+
 function getAllGoods() {
     return goodsRepository.getAllGoods();
 }
@@ -19,6 +25,7 @@ function getOrderedGoods(req) {
 }
 
 module.exports = {
+    delBuy: routeUtils.handleResponse(delBuy, statusCode.OK, statusCode.NOT_FOUND),
     buy: routeUtils.handleResponse(buy, statusCode.OK, statusCode.NOT_FOUND),
     get: routeUtils.handleResponse(getAllGoods, statusCode.OK, statusCode.NO_CONTENT),
     getOrderedGoods: routeUtils.handleResponse(getOrderedGoods, statusCode.OK, statusCode.NO_CONTENT)

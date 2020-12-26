@@ -31,6 +31,34 @@ class GoodsRepository {
         }
     }
 
+    async delBuy(userId, goodId) {
+        try {
+            const user = await User.findOne({ _id: userId });
+            if (!user) {
+                return {
+                    data: {
+                        error: true,
+                        message: 'Invalid user'
+                    }
+                };
+            }
+
+            const good = await Good.findOne({ _id: goodId });
+            if (!good) {
+                return {
+                    data: {
+                        error: true,
+                        message: 'There are no such good'
+                    }
+                };
+            }
+            console.log(goodId);
+            await User.updateOne({ _id: userId }, { $pull: {orderedGoods: goodId } });
+        } catch (err) {
+            throw err;
+        }
+    }
+
     async getAllGoods() {
         try {
             const goods = await Good.find({});
