@@ -1,6 +1,7 @@
 require('./models/User');
 require('./models/Good');
 
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -35,7 +36,8 @@ mongoose.connection.on('error', () => {
     console.log('Connection to mongo db error!');
 });
 
+console.log('AAAAAAAAa', process.env.PORT)
 const port = 3030;
-app.listen(port, () => {
+app.listen(process.env.PORT || 3030, () => {
     console.log(`Server listening on port ${port}`);
 });
